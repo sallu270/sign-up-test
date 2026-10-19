@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Test — Modern Landing Page</title>
+    <meta
+      name="description"
+      content="A modern, responsive landing page for a sign-up focused product with clear value proposition, social proof, and conversion-focused design."
+    />
+    <style>
+      :root {
+        --bg: #0b1020;
+        --bg-soft: #111831;
+        --surface: rgba(255, 255, 255, 0.06);
+        --surface-2: rgba(255, 255, 255, 0.09);
+        --text: #eef2ff;
+        --muted: rgba(238, 242, 255, 0.72);
+        --line: rgba(255, 255, 255, 0.12);
+        --brand: #7c5cff;
+        --brand-2: #22c55e;
+        --brand-3: #38bdf8;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+        --radius-xl: 28px;
+        --radius-lg: 20px;
+        --radius-md: 16px;
+        --radius-sm: 12px;
+        --container: 1180px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(124, 92, 255, 0.24), transparent 28%),
+          radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 26%),
+          linear-gradient(180deg, #0b1020 0%, #090d18 100%);
+        color: var(--text);
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(100% - 32px, var(--container));
+        margin: 0 auto;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 12px;
+        background: #fff;
+        color: #111;
+        padding: 10px 14px;
+        border-radius: 999px;
+        z-index: 9999;
+      }
+
+      .skip-link:focus {
+        left: 16px;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(18px);
+        background: rgba(9, 13, 24, 0.72);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .nav {
+        min-height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        font-size: 1.05rem;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--brand), #9f7cff);
+        color: white;
+        box-shadow: 0 16px 32px rgba(124, 92, 255, 0.35);
+        font-size: 0.9rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: white;
+      }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--brand), #9d7bff);
+        color: white;
+        font-weight: 700;
+        box-shadow: 0 18px 35px rgba(124, 92, 255, 0.28);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .nav-cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 22px 45px rgba(124, 92, 255, 0.36);
+      }
+
+      .menu-toggle {
+        display: none;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.04);
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .menu-toggle span,
+      .menu-toggle span::before,
+      .menu-toggle span::after {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: currentColor;
+        border-radius: 999px;
+        position: relative;
+      }
+
+      .menu-toggle span::before {
+        position: absolute;
+        top: -6px;
+      }
+
+      .menu-toggle span::after {
+        position: absolute;
+        top: 6px;
+      }
+
+      .hero {
+        padding: 84px 0 56px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 36px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid var(--line);
+        color: #d6dcff;
+        font-size: 0.92rem;
+      }
+
+      .hero h1 {
+        margin: 22px 0 18px;
+        font-size: clamp(3rem, 7vw, 5.4rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+      }
+
+      .hero p {
+        max-width: 640px;
+        color: var(--muted);
+        font-size: 1.08rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin: 28px 0 24px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 14px 20px;
+        border-radius: 999px;
+        font-weight: 700;
+        border: 1px solid transparent;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--brand), #9d7bff);
+        color: white;
+        box-shadow: 0 18px 35px rgba(124, 92, 255, 0.25);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.06);
+        color: white;
+        border-color: var(--line);
+      }
+
+      .hero-trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .hero-trust span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .hero-card {
+        position: relative;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05)),
+          rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        padding: 22px;
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: -80px auto auto -80px;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(circle, rgba(56, 189, 248, 0.28), transparent 68%);
+      }
+
+      .dashboard {
+        display: grid;
+        gap: 16px;
+      }
+
+      .mini-panel {
+        padding: 18px;
+        border-radius: var(--radius-lg);
+        background: rgba(10, 15, 28, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .mini-panel h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+      }
+
+      .mini-panel p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .stat-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .stat {
+        padding: 16px;
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.4rem;
+        line-height: 1;
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .section {
+        padding: 28px 0 88px;
+      }
+
+      .section-head {
+        max-width: 720px;
+        margin-bottom: 28px;
+      }
+
+      .section-head h2 {
+        margin: 12px 0 12px;
+        font-size: clamp(2rem, 4vw, 3.1rem);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .card {
+        border-radius: var(--radius-lg);
+        padding: 22px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.16);
+      }
+
+      .icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, rgba(124, 92, 255, 0.2), rgba(56, 189, 248, 0.15));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .feature h3,
+      .card h3 {
+        margin: 0 0 10px;
+        font-size: 1.18rem;
+      }
+
+      .feature p,
+      .card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .process {
+        counter-reset: step;
+      }
+
+      .step {
+        position: relative;
+        padding-top: 8px;
+      }
+
+      .step::before {
+        counter-increment: step;
+        content: counter(step);
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--brand), #9d7bff);
+        color: white;
+        font-weight: 800;
+        margin-bottom: 16px;
+        box-shadow: 0 16px 30px rgba(124, 92, 255, 0.28);
+      }
+
+      .proof {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .quote {
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line);
+      }
+
+      .quote p {
+        margin: 0 0 18px;
+        color: #f8faff;
+        font-size: 1.02rem;
+      }
+
+      .quote .person {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--brand-3), var(--brand));
+      }
+
+      .logos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .logos span {
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line);
+        color: #d8defa;
+        font-weight: 600;
+      }
+
+      .pricing {
+        align-items: stretch;
+      }
+
+      .plan {
+        position: relative;
+        padding: 26px;
+      }
+
+      .plan.featured {
+        background: linear-gradient(180deg, rgba(124, 92, 255, 0.18), rgba(255, 255, 255, 0.08));
+        border-color: rgba(124, 92, 255, 0.35);
+        transform: translateY(-8px);
+      }
+
+      .price {
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        margin: 18px 0 10px;
+      }
+
+      .plan ul {
+        list-style: none;
+        padding: 0;
+        margin: 18px 0 24px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .plan li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        color: var(--muted);
+      }
+
+      .check {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(34, 197, 94, 0.18);
+        color: #86efac;
+        display: inline-grid;
+        place-items: center;
+        flex: none;
+        margin-top: 2px;
+      }
+
+      .faq details {
+        border-radius: var(--radius-md);
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 18px 20px;
+      }
+
+      .faq details + details {
+        margin-top: 14px;
+      }
+
+      .faq summary {
+        cursor: pointer;
+        font-weight: 700;
+        list-style: none;
+      }
+
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq p {
+        margin: 12px 0 0;
+        color: var(--muted);
+      }
+
+      .cta-band {
+        padding: 30px;
+        border-radius: 30px;
+        background:
+          radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 28%),
+          linear-gradient(135deg, rgba(124, 92, 255, 0.95), rgba(59, 130, 246, 0.9));
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .cta-band h2 {
+        margin: 0 0 8px;
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        line-height: 1.05;
+      }
+
+      .cta-band p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.84);
+        max-width: 680px;
+      }
+
+      .footer {
+        padding: 28px 0 44px;
+        color: var(--muted);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .proof,
+        .grid-3,
+        .grid-2,
+        .cta-band {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .plan.featured {
+          transform: none;
+        }
+
+        .cta-band {
+          justify-content: start;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .menu-toggle {
+          display: inline-flex;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: 78px;
+          left: 16px;
+          right: 16px;
+          background: rgba(9, 13, 24, 0.98);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 20px;
+          padding: 16px;
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          box-shadow: var(--shadow);
+        }
+
+        .nav-links.open {
+          display: flex;
+        }
+
+        .nav-cta {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 56px;
+        }
+
+        .hero h1 {
+          font-size: clamp(2.6rem, 15vw, 4.2rem);
+        }
+
+        .stat-row {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-band {
+          padding: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="#home" aria-label="Sign Up Test home">
+          <span class="brand-mark">ST</span>
+          Sign Up Test
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <a class="nav-cta" href="#pricing">Get started</a>
+
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <span class="eyebrow">Fast setup • Better conversions • Modern design</span>
+            <h1>Turn visitors into sign-ups with a page built to convert.</h1>
+            <p>
+              This landing page is designed to capture attention, build trust,
+              and guide people toward one clear action. Clean structure, strong
+              messaging, and mobile-first polish make it work across devices.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#pricing">Start free trial</a>
+              <a class="btn btn-secondary" href="#features">See features</a>
+            </div>
+            <div class="hero-trust" aria-label="Trust indicators">
+              <span>✓ No credit card required</span>
+              <span>✓ Setup in minutes</span>
+              <span>✓ Built for mobile</span>
+            </div>
+          </div>
+
+          <div class="hero-card reveal" aria-label="Product preview">
+            <div class="dashboard">
+              <div class="mini-panel">
+                <h3>Signup performance</h3>
+                <p>Track visitors, conversions, and activation from one simple view.</p>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat">
+                  <strong>3.4x</strong>
+                  <span>higher conversion</span>
+                </div>
+                <div class="stat">
+                  <strong>92%</strong>
+                  <span>mobile completion</span>
+                </div>
+                <div class="stat">
+                  <strong>1 day</strong>
+                  <span>to launch</span>
+                </div>
+              </div>
+
+              <div class="mini-panel">
+                <h3>What you get</h3>
+                <p>
+                  A premium landing page with focused messaging, persuasive
+                  sections, and a clear path to sign up.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Why it works</span>
+            <h2>Everything is arranged to reduce friction and drive action.</h2>
+            <p>
+              A successful landing page does not overwhelm the visitor. It
+              shows value fast, removes doubt, and makes the next step obvious.
+            </p>
+          </div>
+
+          <div class="grid-3">
+            <article class="card feature reveal">
+              <div class="icon">⚡</div>
+              <h3>Clear value proposition</h3>
+              <p>
+                The headline tells people exactly what they get, so they know
+                they are in the right place immediately.
+              </p>
+            </article>
+
+            <article class="card feature reveal">
+              <div class="icon">🛡️</div>
+              <h3>Trust-building layout</h3>
+              <p>
+                Social proof, benefits, and a simple offer make the page feel
+                credible and easy to act on.
+              </p>
+            </article>
+
+            <article class="card feature reveal">
+              <div class="icon">📱</div>
+              <h3>Mobile-first design</h3>
+              <p>
+                The layout adapts smoothly to smaller screens so people can sign
+                up without distractions or broken spacing.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how-it-works">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">How it works</span>
+            <h2>Three simple steps from first visit to sign-up.</h2>
+            <p>
+              The page follows a natural flow that answers questions in the same
+              order a visitor is thinking about them.
+            </p>
+          </div>
+
+          <div class="grid-3 process">
+            <article class="card step reveal">
+              <h3>1. Capture attention</h3>
+              <p>
+                A strong opening gives people a reason to stay and continue
+                reading instead of bouncing away.
+              </p>
+            </article>
+
+            <article class="card step reveal">
+              <h3>2. Build confidence</h3>
+              <p>
+                Concise benefits, reviews, and proof points remove hesitation
+                and increase trust.
+              </p>
+            </article>
+
+            <article class="card step reveal">
+              <h3>3. Convert with clarity</h3>
+              <p>
+                Clear pricing and a final call to action make the next move
+                obvious and easy to complete.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="reviews">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Social proof</span>
+            <h2>Real-world style credibility that supports the offer.</h2>
+            <p>
+              Use testimonials, partner logos, or key numbers to reassure
+              visitors that they are making a smart choice.
+            </p>
+          </div>
+
+          <div class="proof">
+            <article class="quote reveal">
+              <p>
+                “The page is sharp, fast, and focused. It communicates the
+                product clearly and makes the sign-up action feel natural.”
+              </p>
+              <div class="person">
+                <div class="avatar" aria-hidden="true"></div>
+                <div>
+                  <strong>Aarav Mehta</strong><br />
+                  <span style="color: var(--muted)">Product Growth Lead</span>
+                </div>
+              </div>
+            </article>
+
+            <div class="card reveal">
+              <h3 style="margin-top: 0">Trusted by teams that care about conversion</h3>
+              <p style="margin-bottom: 18px">
+                Replace these sample brand names with your own customers or partners.
+              </p>
+              <div class="logos" aria-label="Brand logos">
+                <span>Northstar</span>
+                <span>Launchpad</span>
+                <span>Vertex</span>
+                <span>Pulse</span>
+                <span>Orbit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Pricing</span>
+            <h2>Simple plans with one clear next step.</h2>
+            <p>
+              Keep the offer easy to understand so people can decide quickly
+              without feeling overloaded.
+            </p>
+          </div>
+
+          <div class="grid-3 pricing">
+            <article class="card plan reveal">
+              <h3>Starter</h3>
+              <p>For testing the idea and validating demand.</p>
+              <div class="price">Free</div>
+              <ul>
+                <li><span class="check">✓</span>One landing page</li>
+                <li><span class="check">✓</span>Basic analytics</li>
+                <li><span class="check">✓</span>Email support</li>
+              </ul>
+              <a class="btn btn-secondary" href="#home">Get started</a>
+            </article>
+
+            <article class="card plan featured reveal">
+              <div class="eyebrow" style="margin-bottom: 12px">Most popular</div>
+              <h3>Growth</h3>
+              <p>For teams ready to improve conversion rates.</p>
+              <div class="price">₹1,499</div>
+              <ul>
+                <li><span class="check">✓</span>Conversion-focused sections</li>
+                <li><span class="check">✓</span>Priority support</li>
+                <li><span class="check">✓</span>More customization</li>
+              </ul>
+              <a class="btn btn-primary" href="#contact">Choose Growth</a>
+            </article>
+
+            <article class="card plan reveal">
+              <h3>Scale</h3>
+              <p>For bigger launches and higher-volume campaigns.</p>
+              <div class="price">Custom</div>
+              <ul>
+                <li><span class="check">✓</span>Advanced layout variations</li>
+                <li><span class="check">✓</span>Strategy review</li>
+                <li><span class="check">✓</span>Dedicated onboarding</li>
+              </ul>
+              <a class="btn btn-secondary" href="#contact">Talk to us</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">FAQ</span>
+            <h2>Answers to the most common questions.</h2>
+            <p>
+              A few concise answers help remove hesitation right before the
+              final click.
+            </p>
+          </div>
+
+          <div class="faq reveal">
+            <details open>
+              <summary>Can this landing page be customized?</summary>
+              <p>
+                Yes. You can change the headline, colors, pricing, sections, and
+                call-to-action to match your product or brand.
+              </p>
+            </details>
+            <details>
+              <summary>Is it responsive on phones and tablets?</summary>
+              <p>
+                Yes. The page is built to adapt cleanly to smaller screens with a
+                mobile menu and flexible grid layouts.
+              </p>
+            </details>
+            <details>
+              <summary>Can I add a real sign-up form?</summary>
+              <p>
+                Yes. This version is a front-end landing page, so you can connect
+                it to your backend, email tool, or signup flow.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="container">
+          <div class="cta-band reveal">
+            <div>
+              <h2>Ready to launch your sign-up page?</h2>
+              <p>
+                Use this as the foundation for your product, app, service, or
+                early-access waitlist and start converting visitors today.
+              </p>
+            </div>
+            <div class="hero-actions" style="margin: 0">
+              <a class="btn btn-secondary" href="#home">Preview again</a>
+              <a class="btn btn-primary" href="mailto:hello@example.com">Contact sales</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>
+          <strong style="color: var(--text)">Sign Up Test</strong><br />
+          <span>Modern landing page for better conversions.</span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+
+      toggle?.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      navLinks?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      const revealEls = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("show");
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      revealEls.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
