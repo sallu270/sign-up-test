@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up Test — Colorful Landing Page</title>
+  <style>
+    :root {
+      --bg: #08111f;
+      --bg-2: #0e1730;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-strong: rgba(255, 255, 255, 0.14);
+      --text: #f7f8fc;
+      --muted: rgba(247, 248, 252, 0.76);
+      --line: rgba(255, 255, 255, 0.14);
+      --pink: #ff4fd8;
+      --purple: #8b5cf6;
+      --blue: #38bdf8;
+      --green: #22c55e;
+      --yellow: #f59e0b;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --radius-lg: 32px;
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 79, 216, 0.28), transparent 28%),
+        radial-gradient(circle at top right, rgba(56, 189, 248, 0.24), transparent 26%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.26), transparent 20%),
+        linear-gradient(160deg, var(--bg), var(--bg-2) 65%, #09101c 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--container));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(20px);
+      background: rgba(8, 17, 31, 0.65);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      font-size: 1.05rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--pink), var(--purple) 45%, var(--blue));
+      box-shadow: 0 12px 30px rgba(139, 92, 246, 0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.3rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.95rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      box-shadow: 0 18px 40px rgba(255, 79, 216, 0.22);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 18px 50px rgba(139, 92, 246, 0.35);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .hero {
+      position: relative;
+      padding: 5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #dfe8ff;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.05;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 6vw, 5.8rem);
+      letter-spacing: -0.05em;
+      max-width: 12ch;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #d7d8ff 28%, #ff91e1 62%, #7ce8ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.12rem;
+      line-height: 1.75;
+      max-width: 60ch;
+      margin: 1.3rem 0 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 2.3rem;
+    }
+
+    .metric {
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 34px;
+      padding: 1.2rem;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06)),
+        rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 36px;
+      background: linear-gradient(135deg, rgba(255, 79, 216, 0.3), rgba(56, 189, 248, 0.22), rgba(139, 92, 246, 0.28));
+      filter: blur(24px);
+      z-index: -1;
+    }
+
+    .panel {
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(160deg, rgba(255, 79, 216, 0.18), rgba(56, 189, 248, 0.08)),
+        linear-gradient(180deg, rgba(17, 24, 39, 0.86), rgba(14, 23, 48, 0.96));
+    }
+
+    .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .dots {
+      display: flex;
+      gap: 0.45rem;
+    }
+
+    .dots span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.26);
+    }
+
+    .dots span:nth-child(1) { background: #ff5f57; }
+    .dots span:nth-child(2) { background: #febc2e; }
+    .dots span:nth-child(3) { background: #28c840; }
+
+    .panel-body {
+      padding: 1.2rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 22px;
+      padding: 1rem;
+    }
+
+    .mini-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .mini-title {
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .mini-text {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.9rem;
+    }
+
+    .chip {
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 0.88rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .section {
+      padding: 1.5rem 0 5rem;
+    }
+
+    .section-head {
+      display: grid;
+      gap: 0.65rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      max-width: 60ch;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      padding: 1.35rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.16);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .icon-badge {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, rgba(255, 79, 216, 0.95), rgba(56, 189, 248, 0.95));
+      box-shadow: 0 16px 30px rgba(56, 189, 248, 0.18);
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .steps {
+      counter-reset: step;
+    }
+
+    .steps .card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .steps .card::after {
+      counter-increment: step;
+      content: "0" counter(step);
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.11);
+    }
+
+    .signup-wrap {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .signup-visual,
+    .signup-form {
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: var(--shadow);
+    }
+
+    .signup-visual {
+      padding: 1.5rem;
+      display: grid;
+      align-content: start;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signup-visual::before {
+      content: "";
+      position: absolute;
+      inset: auto -15% -25% auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(255, 79, 216, 0.34), transparent 65%);
+      pointer-events: none;
+    }
+
+    .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: fit-content;
+      padding: 0.65rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .list {
+      display: grid;
+      gap: 0.75rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .list li {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .list li::before {
+      content: "✓";
+      color: #7ef0a7;
+      font-weight: 900;
+      margin-top: 0.05rem;
+    }
+
+    .signup-form {
+      padding: 1.5rem;
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text);
+      padding: 0.95rem 1rem;
+      outline: none;
+      font: inherit;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(247, 248, 252, 0.45);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(56, 189, 248, 0.75);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.14);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .footer {
+      padding: 2rem 0 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .socials a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .signup-wrap,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        max-width: 100%;
+      }
+
+      .hero {
+        padding-top: 3.5rem;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        order: 3;
+        padding-top: 0.5rem;
+        overflow-x: auto;
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#home">
+          <span class="brand-mark">S</span>
+          Sign Up Test
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#features">Features</a>
+          <a href="#steps">How it works</a>
+          <a href="#signup">Sign up</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a class="btn btn-ghost" href="#signup">Learn more</a>
+          <a class="btn btn-primary" href="#signup">Join now</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="reveal">
+            <span class="eyebrow">✨ Bright. Bold. Conversion-ready.</span>
+            <h1>Build a <span class="gradient-text">colorful</span> sign-up page that stands out.</h1>
+            <p class="lead">
+              This landing page uses glowing gradients, glassmorphism cards, and a clean signup layout
+              to create a modern first impression for any product, app, or service.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#signup">Start free</a>
+              <a class="btn btn-ghost" href="#features">See features</a>
+            </div>
+
+            <div class="hero-metrics">
+              <div class="metric">
+                <strong>3x</strong>
+                <span>more visual impact with rich color styling</span>
+              </div>
+              <div class="metric">
+                <strong>100%</strong>
+                <span>responsive across laptop, tablet, and mobile</span>
+              </div>
+              <div class="metric">
+                <strong>1 page</strong>
+                <span>focused flow for cleaner sign-up conversions</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-card reveal" aria-label="Preview panel">
+            <div class="panel">
+              <div class="panel-top">
+                <div class="dots" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+                <span class="chip">Live preview</span>
+              </div>
+              <div class="panel-body">
+                <div class="glass">
+                  <div class="mini-row">
+                    <div>
+                      <div class="mini-title">Welcome aboard</div>
+                      <div class="mini-text">A polished visual stack for sign-up pages, product launches, and promotional landing pages.</div>
+                    </div>
+                    <div class="icon-badge" aria-hidden="true">★</div>
+                  </div>
+                </div>
+
+                <div class="glass">
+                  <div class="mini-title">Color palette</div>
+                  <div class="chip-row">
+                    <span class="chip">Pink glow</span>
+                    <span class="chip">Electric purple</span>
+                    <span class="chip">Sky blue</span>
+                    <span class="chip">Neon green</span>
+                  </div>
+                </div>
+
+                <div class="glass">
+                  <div class="mini-title">Why it works</div>
+                  <div class="mini-text">
+                    Strong typography, clear CTA buttons, premium card surfaces, and a simple form flow keep users moving forward.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Features</span>
+          <h2>Everything feels brighter, cleaner, and more engaging.</h2>
+          <p>
+            The layout balances energy with clarity so the page looks lively without losing focus on the sign-up action.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card reveal">
+            <div class="icon-badge">⚡</div>
+            <h3>High-energy visuals</h3>
+            <p>Gradient backgrounds, glowing highlights, and layered cards create an eye-catching modern look.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon-badge">✦</div>
+            <h3>Clean UI structure</h3>
+            <p>Sections are arranged for scanning: hero, benefits, workflow, and a focused form area.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon-badge">✓</div>
+            <h3>Conversion-friendly</h3>
+            <p>Clear buttons, short copy, and a simple form reduce friction and make the call to action obvious.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="steps" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">How it works</span>
+          <h2>Three simple steps to get users signed up.</h2>
+        </div>
+
+        <div class="grid grid-3 steps">
+          <article class="card reveal">
+            <h3>1. Catch attention</h3>
+            <p>Use bold color and confident typography to make the page feel instantly premium.</p>
+          </article>
+
+          <article class="card reveal">
+            <h3>2. Build trust</h3>
+            <p>Support the headline with short benefits, social proof, and a polished interface.</p>
+          </article>
+
+          <article class="card reveal">
+            <h3>3. Convert smoothly</h3>
+            <p>Place the sign-up form where it feels natural and keep the path to submit short and simple.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="signup" class="section">
+      <div class="container">
+        <div class="signup-wrap">
+          <div class="signup-visual reveal">
+            <span class="eyebrow">Join the waitlist</span>
+            <h2>Ready to launch with style?</h2>
+            <p class="lead" style="margin-top: 0;">
+              This section gives the page a clear final action. It pairs a bold message with a calm, usable form.
+            </p>
+
+            <ul class="list">
+              <li>Perfect for SaaS, apps, communities, or creative products</li>
+              <li>Designed with bold gradients and soft glass surfaces</li>
+              <li>Fully responsive and easy to customize</li>
+            </ul>
+
+            <div class="stat-pill">🎨 Colorful design that feels modern</div>
+          </div>
+
+          <div class="signup-form reveal">
+            <form>
+              <div class="field">
+                <label for="name">Full name</label>
+                <input id="name" type="text" placeholder="Enter your name" />
+              </div>
+
+              <div class="field">
+                <label for="email">Email address</label>
+                <input id="email" type="email" placeholder="you@example.com" />
+              </div>
+
+              <div class="field">
+                <label for="plan">What are you looking for?</label>
+                <select id="plan">
+                  <option>Personal use</option>
+                  <option>Team launch</option>
+                  <option>Product landing page</option>
+                  <option>Marketing site</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" placeholder="Tell us what you want to build..."></textarea>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Create account</button>
+              <p class="form-note">
+                This is a visual demo form for the colorful landing page. You can connect it to your backend later.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#home">
+            <span class="brand-mark">S</span>
+            Sign Up Test
+          </a>
+          <p style="max-width: 42ch; margin: 0.9rem 0 0;">
+            A vibrant HTML and CSS landing page built to feel bold, polished, and easy to adapt.
+          </p>
+        </div>
+
+        <div class="socials" aria-label="Social links">
+          <a href="#" aria-label="Instagram">⌁</a>
+          <a href="#" aria-label="Twitter">✦</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    revealItems.forEach(item => observer.observe(item));
+  </script>
+</body>
+</html>
